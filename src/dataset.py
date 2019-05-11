@@ -60,15 +60,12 @@ def load_dataset(text_field, label_field, data_dir, args, **kwargs):
     label_field.build_vocab(train_dataset, dev_dataset, min_freq=2)  # change from '0', '1' to 0,1
 
     vocab = text_field.vocab
-    print(vocab.freqs)
     print(len(vocab))
-    print(vocab.stoi)
 
     # **************************  build Iterator ***********************************
     train_iter, dev_iter, test_iter = data.Iterator.splits(
         (train_dataset, dev_dataset, test_dataset),
         batch_sizes=(args.batch_size, len(dev_dataset), args.batch_size),
-        device=0,
         sort_key=lambda x: len(x.text),
         **kwargs)
     return train_iter, dev_iter
