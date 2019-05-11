@@ -1,42 +1,63 @@
+
+
+
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
+from torch import nn
+import numpy as np
 
 
 class TextCNN(nn.Module):
-    def __init__(self, args):
+    def __init__(self, config, vocab_size, word_embeddings):
         super(TextCNN, self).__init__()
-        self.args = args
+        self.config = config
 
-        class_num = args.class_num
-        chanel_num = 1
-        filter_num = args.filter_num
-        filter_sizes = args.filter_sizes
+        # Embedding Layer
+        self.embeddings = nn.Embedding(vocab_size, self.config.embed_size)
+        self.embeddings.weight = nn.Parameter(word_embeddings, requires_grad=False)
 
-        vocabulary_size = args.vocabulary_size
-        embedding_dimension = args.embedding_dim
-        self.embedding = nn.Embedding(vocabulary_size, embedding_dimension)
-        if args.static:
-            self.embedding = self.embedding.from_pretrained(args.vectors, freeze=not args.non_static)
-        if args.multichannel:
-            self.embedding2 = nn.Embedding(vocabulary_size, embedding_dimension).from_pretrained(args.vectors)
-            chanel_num += 1
-        else:
-            self.embedding2 = None
-        self.convs = nn.ModuleList(
-            [nn.Conv2d(chanel_num, filter_num, (size, embedding_dimension)) for size in filter_sizes])
-        self.dropout = nn.Dropout(args.dropout)
-        self.fc = nn.Linear(len(filter_sizes) * filter_num, class_num)
+        self.conv1 = nn.Sequential(
+            nn.Conv1d(in_channels=self.config.embed_size, out_channels=self.config.num_channels,
+                      kernel_size=self.config.kernel_size[0]),
+            nn.ReLU(),
+            nn.MaxPool1d(self.config.max_sen_len - self.config.kernel_size[0] + 1)
+        )
+        self.conv2 = nn.Sequential(
+            nn.Conv1d(in_channels=self.config.embed_size, out_channels=self.config.num_channels,
+                      kernel_size=self.config.kernel_size[1]),
+            nn.ReLU(),
+            nn.MaxPool1d(self.config.max_sen_len - self.config.kernel_size[1] + 1)
+        )
+        self.conv3 = nn.Sequential(
+            nn.Conv1d(in_channels=self.config.embed_size, out_channels=self.config.num_channels,
+                      kernel_size=self.config.kernel_size[2]),
+            nn.ReLU(),
+            nn.MaxPool1d(self.config.max_sen_len - self.config.kernel_size[2] + 1)
+        )
+
+        self.dropout = nn.Dropout(self.config.dropout_keep)
+
+        # Fully-Connected Layer
+        self.fc = nn.Linear(self.config.num_channels * len(self.config.kernel_size), self.config.output_size)
+
+        # Softmax non-linearity
+        self.softmax = nn.Softmax()
 
     def forward(self, x):
-        if self.embedding2:
-            x = torch.stack([self.embedding(x), self.embedding2(x)], dim=1)
-        else:
-            x = self.embedding(x)
-            x = x.unsqueeze(1)
-        x = [F.relu(conv(x)).squeeze(3) for conv in self.convs]
-        x = [F.max_pool1d(item, item.size(2)).squeeze(2) for item in x]
-        x = torch.cat(x, 1)
-        x = self.dropout(x)
-        logits = self.fc(x)
-        return logits
+        """
+        :param x: LongTensor      batch_size * vocab_size
+        :return:
+        """
+        embedded_sent = self.embeddings(x).permute(1, 2, 0)
+        # embedded_sent.shape = (batch_size=64,embed_size=300,max_sen_len=20)
+
+        conv_out1 = self.conv1(embedded_sent).squeeze(2)  # shape=(64, num_channels, 1) (squeeze 1)
+        conv_out2 = self.conv2(embedded_sent).squeeze(2)
+        conv_out3 = self.conv3(embedded_sent).squeeze(2)
+
+        all_out = torch.cat((conv_out1, conv_out2, conv_out3), 1)
+        final_feature_map = self.dropout(all_out)
+        final_out = self.fc(final_feature_map)
+        return self.softmax(final_out)
+
+
+
