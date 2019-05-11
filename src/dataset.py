@@ -45,7 +45,7 @@ def get_dataset(text_field, label_field, data_dir='../data/'):
     return train, valid, test
 
 
-def load_dataset(text_field, label_field, data_dir, args, **kwargs):
+def load_dataset(text_field, label_field, data_dir, args, device=-1):
     # ************************** get torch text dataset ***************************
     train_dataset, dev_dataset, test_dataset = get_dataset(text_field, label_field, data_dir=data_dir)
 
@@ -67,7 +67,7 @@ def load_dataset(text_field, label_field, data_dir, args, **kwargs):
         (train_dataset, dev_dataset, test_dataset),
         batch_sizes=(args.batch_size, len(dev_dataset), args.batch_size),
         sort_key=lambda x: len(x.text),
-        **kwargs)
+        device=device, repeat=False, shuffle=True)
     return train_iter, dev_iter
 
 

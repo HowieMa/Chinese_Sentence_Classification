@@ -20,8 +20,7 @@ data_dir = '../data/'
 
 print('Loading data Iterator ...')
 text_field, label_field = create_field(data_dir)
-train_iter, dev_iter, test_iter = dataset.load_dataset(text_field, label_field, data_dir, args,
-                                                       device=-1, repeat=False, shuffle=True)
+train_iter, dev_iter, test_iter = dataset.load_dataset(text_field, label_field, data_dir, args, device=-1)
 
 args.vocabulary_size = len(text_field.vocab)
 if args.static:
