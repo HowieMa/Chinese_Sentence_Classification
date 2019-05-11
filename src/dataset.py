@@ -45,14 +45,11 @@ def get_dataset(text_field, label_field, data_dir='../data/'):
     return train, valid, test
 
 
-def load_dataset(data_dir, args, **kwargs):
-    # [step1] Create Field objects to define operation for text and label *****************
-    text_field, label_field = create_field(data_dir)
-
-    # ************************** [step2] get torch text dataset ***************************
+def load_dataset(text_field, label_field, data_dir, args, **kwargs):
+    # ************************** get torch text dataset ***************************
     train_dataset, dev_dataset, test_dataset = get_dataset(text_field, label_field, data_dir=data_dir)
 
-    # ************************** [step3] build vocabulary *********************************
+    # ************************** build vocabulary *********************************
     if args.static and args.pretrained_name and args.pretrained_path:
         # load pre-trained embedding vocab
         vectors = load_word_vectors(args.pretrained_name, args.pretrained_path)
@@ -60,14 +57,14 @@ def load_dataset(data_dir, args, **kwargs):
     else:
         text_field.build_vocab(train_dataset, dev_dataset)  # build vocab from train/val dataset only
 
-    label_field.build_vocab(train_dataset, dev_dataset)  # change from '0', '1' to 0,1
+    label_field.build_vocab(train_dataset, dev_dataset, min_freq=2)  # change from '0', '1' to 0,1
 
     vocab = text_field.vocab
     print(vocab.freqs)
     print(len(vocab))
     print(vocab.stoi)
 
-    # ************************** [step4] build Iterator ***********************************
+    # **************************  build Iterator ***********************************
     train_iter, dev_iter, test_iter = data.Iterator.splits(
         (train_dataset, dev_dataset, test_dataset),
         batch_sizes=(args.batch_size, len(dev_dataset), args.batch_size),
