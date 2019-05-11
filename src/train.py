@@ -25,7 +25,7 @@ def train(train_iter, dev_iter, model, args):
             optimizer.step()
             steps += 1
             if steps % args.log_interval == 0:
-                corrects = (torch.max(logits, 1)[1].view(target.size()).data == target.data).sum()
+                corrects = (torch.max(logits, 1)[1].view(target.size()) == target).sum()
                 train_acc = 100.0 * corrects / batch.batch_size
                 sys.stdout.write(
                     '\rBatch[{}] - loss: {:.6f}  acc: {:.4f}%({}/{})'.format(steps,
@@ -59,7 +59,7 @@ def eval(data_iter, model, args):
         loss = F.cross_entropy(logits, target)
         avg_loss += loss.item()
         corrects += (torch.max(logits, 1)
-                     [1].view(target.size()).data == target.data).sum()
+                     [1].view(target.size()) == target).sum()
     size = len(data_iter.dataset)
     avg_loss /= size
     accuracy = 100.0 * corrects / size
