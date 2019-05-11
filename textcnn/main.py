@@ -9,7 +9,6 @@ import torchtext.data as data
 import model
 
 from src import train
-from src import dataset
 from src import my_args
 
 from src.dataset import *
@@ -20,7 +19,11 @@ data_dir = '../data/'
 
 print('Loading data Iterator ...')
 text_field, label_field = create_field(data_dir)
-train_iter, dev_iter, test_iter = dataset.load_dataset(text_field, label_field, data_dir, args, device=-1)
+
+device = -1
+train_iter, dev_iter, test_iter = load_dataset(text_field, label_field,
+                                               data_dir, args, device=-1, repeat=False, shuffle=True)
+
 
 args.vocabulary_size = len(text_field.vocab)
 if args.static:

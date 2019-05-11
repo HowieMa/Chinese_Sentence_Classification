@@ -4,6 +4,8 @@
 # Requires
 Python >= 3.5  
 Pytorch >= 1.1.0  
-torchtext  
+torchtext  >= 0.3.1 
+
+
 
 

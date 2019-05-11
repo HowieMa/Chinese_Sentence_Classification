@@ -8,14 +8,16 @@ class TextCNN(nn.Module):
         super(TextCNN, self).__init__()
         self.args = args
 
-        class_num = args.class_num
-        chanel_num = 1
-        filter_num = args.filter_num
-        filter_sizes = args.filter_sizes
+        class_num = args.class_num    # 3, 0 for unk, 1 for negative, 2 for postive
+        chanel_num = 1                #
+        filter_num = args.filter_num  # 100
+        filter_sizes = args.filter_sizes    # [3,4,5]
 
-        vocabulary_size = args.vocabulary_size
-        embedding_dimension = args.embedding_dim
+        vocabulary_size = args.vocabulary_size  # total number of vocab (2593)
+        embedding_dimension = args.embedding_dim     # 128
         self.embedding = nn.Embedding(vocabulary_size, embedding_dimension)
+
+        # **************** different kinds of initialization for embedding ****************
         if args.static:
             self.embedding = self.embedding.from_pretrained(args.vectors, freeze=not args.non_static)
         if args.multichannel:
@@ -23,20 +25,37 @@ class TextCNN(nn.Module):
             chanel_num += 1
         else:
             self.embedding2 = None
+
+
+        # self.convs = nn.ModuleList(
+        #     [nn.Conv2d(chanel_num, filter_num, (size, embedding_dimension)) for size in filter_sizes])
+
         self.convs = nn.ModuleList(
-            [nn.Conv2d(chanel_num, filter_num, (size, embedding_dimension)) for size in filter_sizes])
+            [
+                nn.Sequential(nn.Conv1d(in_channels=embedding_dimension,
+                                        out_channels=filter_num,
+                                        kernel_size=size),
+                              nn.ReLU(),
+                              nn.MaxPool1d(kernel_size=args.sen_len - size + 1))
+                for size in filter_sizes
+            ])
+
         self.dropout = nn.Dropout(args.dropout)
         self.fc = nn.Linear(len(filter_sizes) * filter_num, class_num)
 
     def forward(self, x):
+        """
+        :param x: LongTensor    Batch_size * Sentence_length
+        :return:
+        """
         if self.embedding2:
             x = torch.stack([self.embedding(x), self.embedding2(x)], dim=1)
         else:
-            x = self.embedding(x)
-            x = x.unsqueeze(1)
-        x = [F.relu(conv(x)).squeeze(3) for conv in self.convs]
-        x = [F.max_pool1d(item, item.size(2)).squeeze(2) for item in x]
-        x = torch.cat(x, 1)
+            x = self.embedding(x)       # Batch_size * Sentence_length(32) * embed_dim(128)
+            x = x.permute(0, 2, 1)      # Batch_size * Embed_dim(128) * Sentence_length(32)
+
+        x = [conv(x).squeeze(2) for conv in self.convs]  # Batch_size * 100
+        x = torch.cat(x, dim=1)  # Batch_size * (100+100+100)
         x = self.dropout(x)
         logits = self.fc(x)
         return logits

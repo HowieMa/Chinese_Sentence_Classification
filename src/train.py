@@ -34,7 +34,7 @@ def train(train_iter, dev_iter, model, args):
                                                                              corrects,
                                                                              batch.batch_size))
             if steps % args.test_interval == 0:
-                dev_acc = eval(dev_iter, model, args)
+                dev_acc = valid(dev_iter, model, args)
                 if dev_acc > best_acc:
                     best_acc = dev_acc
                     last_step = steps
@@ -47,12 +47,12 @@ def train(train_iter, dev_iter, model, args):
                         raise KeyboardInterrupt
 
 
-def eval(data_iter, model, args):
+def valid(data_iter, model, args):
     model.eval()
     corrects, avg_loss = 0, 0
     for batch in data_iter:
         feature, target = batch.text, batch.label
-        feature.data.t_(), target.data.sub_(1)
+        feature.t_(), target.sub_(1)
         if args.cuda:
             feature, target = feature.cuda(), target.cuda()
         logits = model(feature)

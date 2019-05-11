@@ -5,7 +5,7 @@ def build_args_parser():
     parser = argparse.ArgumentParser(description='TextCNN text classifier')
     # learning
     parser.add_argument('-lr', type=float, default=0.001, help='initial learning rate [default: 0.001]')
-    parser.add_argument('-epochs', type=int, default=256, help='number of epochs for train [default: 256]')
+    parser.add_argument('-epochs', type=int, default=2560, help='number of epochs for train [default: 256]')
     parser.add_argument('-batch-size', type=int, default=128, help='batch size for training [default: 128]')
     parser.add_argument('-log-interval', type=int, default=1,
                         help='how many steps to wait before logging training status [default: 1]')
@@ -22,6 +22,7 @@ def build_args_parser():
     parser.add_argument('-filter-num', type=int, default=100, help='number of each size of filter')
     parser.add_argument('-filter-sizes', type=str, default='3,4,5',
                         help='comma-separated filter sizes to use for convolution')
+    parser.add_argument('-sen_len', type=int, default=32, help='max length of sentence')
 
     parser.add_argument('-static', type=bool, default=False, help='whether to use static pre-trained word vectors')
     parser.add_argument('-non-static', type=bool, default=False,
