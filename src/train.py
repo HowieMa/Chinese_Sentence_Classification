@@ -28,13 +28,13 @@ def train(train_iter, dev_iter, model, args):
                 corrects = (torch.max(logits, 1)[1].view(target.size()) == target).sum()
                 train_acc = 100.0 * corrects / batch.batch_size
                 sys.stdout.write(
-                    '\rBatch[{}] - loss: {:.6f}  acc: {:.4f}%({}/{})'.format(steps,
+                    '\rIteration:[{}] - loss: {:.6f}  acc: {:.4f}%({}/{})'.format(steps,
                                                                              loss.item(),
                                                                              train_acc,
                                                                              corrects,
                                                                              batch.batch_size))
             if steps % args.test_interval == 0:
-                dev_acc = valid(dev_iter, model, args)
+                dev_acc = evaluation(dev_iter, model, args)
                 if dev_acc > best_acc:
                     best_acc = dev_acc
                     last_step = steps
@@ -47,7 +47,7 @@ def train(train_iter, dev_iter, model, args):
                         raise KeyboardInterrupt
 
 
-def valid(data_iter, model, args):
+def evaluation(data_iter, model, args):
     model.eval()
     corrects, avg_loss = 0, 0
     for batch in data_iter:

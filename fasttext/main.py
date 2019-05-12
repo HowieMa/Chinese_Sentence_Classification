@@ -1,14 +1,13 @@
+import torch
 import sys
 import os
 currentUrl = os.path.dirname(__file__)
 parentUrl = os.path.abspath(os.path.join(currentUrl, os.pardir))
 sys.path.append(parentUrl)
 
-
-from text_cnn import *
+from fast_text import FastText
 from src import train
 from src import my_args
-
 from src.dataset import *
 
 
@@ -34,21 +33,22 @@ args.class_num = len(label_field.vocab)
 args.cuda = args.device != -1 and torch.cuda.is_available()
 args.filter_sizes = [int(size) for size in args.filter_sizes.split(',')]
 
+
 print('Parameters:')
 for attr, value in sorted(args.__dict__.items()):
     if attr in {'vectors'}:
         continue
     print('\t{}={}'.format(attr.upper(), value))
 
-text_cnn = TextCNN(args)
+net = FastText(args, hidden_size=20)
 if args.snapshot:
     print('\nLoading model from {}...\n'.format(args.snapshot))
-    text_cnn.load_state_dict(torch.load(args.snapshot))
+    net.load_state_dict(torch.load(args.snapshot))
 
 if args.cuda:
     torch.cuda.set_device(args.device)
-    text_cnn = text_cnn.cuda()
+    text_cnn = net.cuda()
 try:
-    train.train(train_iter, dev_iter, text_cnn, args)
+    train.train(train_iter, dev_iter, net, args)
 except KeyboardInterrupt:
     print('Exiting from training early')

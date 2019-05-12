@@ -2,8 +2,6 @@ from torchtext.vocab import Vectors
 from torchtext import data
 import jieba
 
-from my_args import *
-
 
 def load_word_vectors(model_name, model_path):
     vectors = Vectors(name=model_name, cache=model_path)
@@ -54,7 +52,6 @@ def load_dataset(text_field, label_field, data_dir, args, **kwargs):
         vectors = load_word_vectors(args.pretrained_name, args.pretrained_path)
         text_field.build_vocab(train_dataset, dev_dataset, vectors=vectors)
     else:
-        print(1)
         text_field.build_vocab(train_dataset, dev_dataset)  # build vocab from train/val dataset only
 
     label_field.build_vocab(train_dataset, dev_dataset)  # change from '0', '1' to 0,1
@@ -95,12 +92,13 @@ if __name__ == "__main__":
     print(Train_dataset[id].text)    # ['你', '快', '休息', '我爱你', '小度']
     print(Train_dataset[id].label)   # 1
 
-    args = build_args_parser()
-    Train_iter, Dev_iter, Test_iter = load_dataset(Text_field, Label_field,  '../data', args,
-                                                   device=-1, repeat=False, shuffle=True)
-    # Test_iter
-    batch = next(iter(Train_iter))
-    print(batch.text.shape)
-    print(batch.label)
-    print(batch.label.shape)
+    # args = build_args_parser()
+    # Train_iter, Dev_iter, Test_iter = load_dataset(Text_field, Label_field,  '../data', args,
+    #                                                device=-1, repeat=False, shuffle=True)
+    # # Test_iter
+    # batch = next(iter(Train_iter))
+    # print(batch.text.shape)
+    # print(batch.label)
+    # print(batch.label.shape)
 
+    vectors = load_word_vectors('sgns.zhihu.word', '../pretrained')
