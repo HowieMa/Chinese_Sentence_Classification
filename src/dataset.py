@@ -27,7 +27,7 @@ def build_stop_words_set(set_dir):
 
 def create_field(data_dir='../data/du_query/'):
     stop_words = build_stop_words_set(data_dir + 'stop_words.txt')
-    text_field = data.Field(sequential=True, tokenize=tokenizer_zh, stop_words=stop_words)
+    text_field = data.Field(sequential=True, tokenize=tokenizer_zh, fix_length=60, stop_words=stop_words)
     label_field = data.Field(sequential=False)
     return text_field, label_field
 
