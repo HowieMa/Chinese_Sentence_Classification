@@ -7,7 +7,8 @@ import torch.nn.functional as F
 def train(train_iter, dev_iter, model, args):
     if args.cuda:
         model.cuda()
-    optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
+    learning_rate = args.lr
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     steps = 0
     best_acc = 0
     last_step = 0
@@ -33,6 +34,11 @@ def train(train_iter, dev_iter, model, args):
                                                                              train_acc,
                                                                              corrects,
                                                                              batch.batch_size))
+
+            if steps % 1000 == 0:
+                learning_rate /= 2
+                update_lr(optimizer, learning_rate)
+
             if steps % args.test_interval == 0:
                 dev_acc = evaluation(dev_iter, model, args)
                 if dev_acc > best_acc:
@@ -77,3 +83,9 @@ def save(model, save_dir, save_prefix, steps):
     save_prefix = os.path.join(save_dir, save_prefix)
     save_path = '{}_steps_{}.pt'.format(save_prefix, steps)
     torch.save(model.state_dict(), save_path)
+
+
+# For updating the learning rate
+def update_lr(optimizer, lr):
+    for param_group in optimizer.param_groups:
+        param_group['lr'] = lr
