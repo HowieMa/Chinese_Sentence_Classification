@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 
 class TextCNN(nn.Module):
@@ -45,8 +44,8 @@ class TextCNN(nn.Module):
         :return:
         """
         if self.embedding2:
-            x = torch.stack([self.embedding(x), self.embedding2(x)], dim=1)
-            x = x.permute(0, 2, 1)  # Batch_size * Embed_dim(128) * Sentence_length*2(64)
+            x = torch.cat([self.embedding(x), self.embedding2(x)], dim=2)  # bz * sen_len * (embed_dim * 2)
+            x = x.permute(0, 2, 1)  # Batch_size * (Embed_dim*2) * Sentence_length
         else:
             x = self.embedding(x)       # Batch_size * Sentence_length(32) * embed_dim(128)
             x = x.permute(0, 2, 1)      # Batch_size * Embed_dim(128) * Sentence_length(32)

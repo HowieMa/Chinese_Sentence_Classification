@@ -37,7 +37,7 @@ class FastText(nn.Module):
         :return:
         """
         if self.embedding2:
-            x = torch.stack([self.embedding(x), self.embedding2(x)], dim=1)
+            x = torch.cat([self.embedding(x), self.embedding2(x)], dim=2)  # bz * sen_len * (embed_dim * 2)
         else:
             x = self.embedding(x)       # Batch_size * Sentence_length(32) * embed_dim(128)
 

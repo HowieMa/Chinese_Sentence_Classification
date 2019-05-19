@@ -53,8 +53,8 @@ class RCNN(nn.Module):
        :return:
         """
         if self.embedding2:
-            x = torch.stack([self.embedding(x), self.embedding2(x)], dim=1)
-            x = x.permute(1, 0, 2)  # Sentence_length(32) * Batch_size embed_dim(128)
+            x = torch.cat([self.embedding(x), self.embedding2(x)], dim=2)  # bz * sen_len * (embed_dim * 2)
+            x = x.permute(1, 0, 2)  # Sentence_length(32) * Batch_size * (embed_dim * 2)
         else:
             x = self.embedding(x)  # Batch_size * Sentence_length(32) * embed_dim(128)
             x = x.permute(1, 0, 2)  # Sentence_length(32) * Batch_size embed_dim(128)

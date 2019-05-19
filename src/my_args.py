@@ -5,14 +5,14 @@ def build_args_parser():
     parser = argparse.ArgumentParser(description='Model_TextCNN text classifier')
     # learning
     parser.add_argument('-lr', type=float, default=0.001, help='initial learning rate [default: 0.001]')
-    parser.add_argument('-epochs', type=int, default=3000, help='number of epochs for train [default: 256]')
+    parser.add_argument('-epochs', type=int, default=256, help='number of epochs for train [default: 256]')
     parser.add_argument('-batch-size', type=int, default=128, help='batch size for training [default: 128]')
     parser.add_argument('-log-interval', type=int, default=1,
                         help='how many steps to wait before logging training status [default: 1]')
     parser.add_argument('-test-interval', type=int, default=100,
                         help='how many steps to wait before testing [default: 100]')
     parser.add_argument('-save-dir', type=str, default='snapshot', help='where to save the snapshot')
-    parser.add_argument('-early-stopping', type=int, default=3000,
+    parser.add_argument('-early-stopping', type=int, default=1000,
                         help='iteration numbers to stop without performance increasing')
     parser.add_argument('-save-best', type=bool, default=True, help='whether to save when get best performance')
     # model

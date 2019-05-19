@@ -12,7 +12,7 @@ from src.dataset import *
 
 
 args = build_args_parser()
-data_dir = '../data/du_query/'
+data_dir = '../data/cars_comment/'
 
 print('Loading data Iterator ...')
 text_field, label_field = create_field(data_dir)
