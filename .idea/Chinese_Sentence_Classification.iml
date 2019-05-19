@@ -2,9 +2,11 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/textcnn" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Model_TextCNN" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/fasttext" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Model_FastText" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Model_TextRNN" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Model_RCNN" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (brain_tumor_segmentation)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

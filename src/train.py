@@ -45,6 +45,7 @@ def train(train_iter, dev_iter, model, args):
                     if steps - last_step >= args.early_stopping:
                         print('\nearly stop by {} steps, acc: {:.4f}%'.format(args.early_stopping, best_acc))
                         raise KeyboardInterrupt
+    return model
 
 
 def evaluation(data_iter, model, args):

@@ -1,6 +1,5 @@
 import torch
 from torch import nn
-import numpy as np
 
 
 class FastText(nn.Module):
@@ -39,12 +38,10 @@ class FastText(nn.Module):
         """
         if self.embedding2:
             x = torch.stack([self.embedding(x), self.embedding2(x)], dim=1)
-            x = x.permute(0, 2, 1)  # Batch_size * Embed_dim(128) * Sentence_length*2(64)
         else:
             x = self.embedding(x)       # Batch_size * Sentence_length(32) * embed_dim(128)
-            x = x.permute(0, 2, 1)      # Batch_size * Embed_dim(128) * Sentence_length(32)
 
-        x = x.mean(dim=2)               # Batch_size * Embed_dim(128)
+        x = x.mean(dim=1)               # Batch_size * Embed_dim(128)
         x = self.fc1(x)                 # Batch_size * Hidden(128)
         x = self.fc2(x)
         return self.softmax(x)

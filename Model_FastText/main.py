@@ -1,17 +1,17 @@
-import torch
 import sys
 import os
 currentUrl = os.path.dirname(__file__)
 parentUrl = os.path.abspath(os.path.join(currentUrl, os.pardir))
 sys.path.append(parentUrl)
 
-from fast_text import FastText
-from src import train
-from src import my_args
+
+from fast_text import *
+from src.train import *
+from src.my_args import *
 from src.dataset import *
 
 
-args = my_args.build_args_parser()
+args = build_args_parser()
 data_dir = '../data/du_query/'
 
 print('Loading data Iterator ...')
@@ -47,8 +47,11 @@ if args.snapshot:
 
 if args.cuda:
     torch.cuda.set_device(args.device)
-    text_cnn = net.cuda()
+    net = net.cuda()
 try:
-    train.train(train_iter, dev_iter, net, args)
+    net = train(train_iter, dev_iter, net, args)
 except KeyboardInterrupt:
     print('Exiting from training early')
+
+print('*'*20 + ' Testing ' + '*'*20)
+test_acc = evaluation(dev_iter, net, args)

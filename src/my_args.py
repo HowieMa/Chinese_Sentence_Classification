@@ -2,7 +2,7 @@ import argparse
 
 
 def build_args_parser():
-    parser = argparse.ArgumentParser(description='TextCNN text classifier')
+    parser = argparse.ArgumentParser(description='Model_TextCNN text classifier')
     # learning
     parser.add_argument('-lr', type=float, default=0.001, help='initial learning rate [default: 0.001]')
     parser.add_argument('-epochs', type=int, default=3000, help='number of epochs for train [default: 256]')
