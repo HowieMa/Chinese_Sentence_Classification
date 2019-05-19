@@ -25,18 +25,18 @@ def build_stop_words_set(set_dir):
     return stop_words
 
 
-def create_field(data_dir='../data/'):
+def create_field(data_dir='../data/du_query/'):
     stop_words = build_stop_words_set(data_dir + 'stop_words.txt')
     text_field = data.Field(sequential=True, tokenize=tokenizer_zh, stop_words=stop_words)
     label_field = data.Field(sequential=False)
     return text_field, label_field
 
 
-def get_dataset(text_field, label_field, data_dir='../data/'):
-    train, valid, test = data.TabularDataset.splits(path=data_dir, format='csv', skip_header=False,
-                                                    train='train.csv',
-                                                    validation='valid.csv',
-                                                    test='test.csv',
+def get_dataset(text_field, label_field, data_dir='../data/du_query'):
+    train, valid, test = data.TabularDataset.splits(path=data_dir, format='tsv', skip_header=False,
+                                                    train='train.tsv',
+                                                    validation='valid.tsv',
+                                                    test='test.tsv',
                                                     fields=[('text', text_field), ('label', label_field)]
                                                     )
     return train, valid, test
@@ -56,9 +56,8 @@ def load_dataset(text_field, label_field, data_dir, args, **kwargs):
 
     label_field.build_vocab(train_dataset, dev_dataset)  # change from '0', '1' to 0,1
 
-    print('Num of class ************************')
+    print('Num of class is ' + str(len(label_field.vocab)))
     print(label_field.vocab.stoi)
-    print(len(label_field.vocab))
 
     # **************************  build Iterator ***********************************
     train_iter, dev_iter, test_iter = data.Iterator.splits(
@@ -100,5 +99,5 @@ if __name__ == "__main__":
     # print(batch.text.shape)
     # print(batch.label)
     # print(batch.label.shape)
-
-    vectors = load_word_vectors('sgns.zhihu.word', '../pretrained')
+    #
+    # vectors = load_word_vectors('sgns.zhihu.word', '../pretrained')
