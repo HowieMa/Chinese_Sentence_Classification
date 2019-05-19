@@ -56,6 +56,6 @@ except KeyboardInterrupt:
 print('*'*30 + ' Testing ' + '*'*30)
 save_prefix = os.path.join(args.save_dir, 'best')
 save_path = '{}_model.pth'.format(save_prefix)
-state_dict = torch.load(os.path.join(save_path, 'best_model.pth'))
+state_dict = torch.load(os.path.join(save_path))
 net.load_state_dict(state_dict)
 test_acc = test(test_iter, net, args)

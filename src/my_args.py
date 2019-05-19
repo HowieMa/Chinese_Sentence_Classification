@@ -12,7 +12,7 @@ def build_args_parser():
     parser.add_argument('-test-interval', type=int, default=100,
                         help='how many steps to wait before testing [default: 100]')
     parser.add_argument('-save-dir', type=str, default='snapshot', help='where to save the snapshot')
-    parser.add_argument('-early-stopping', type=int, default=1000,
+    parser.add_argument('-early-stopping', type=int, default=500,
                         help='iteration numbers to stop without performance increasing')
     parser.add_argument('-save-best', type=bool, default=True, help='whether to save when get best performance')
     # model

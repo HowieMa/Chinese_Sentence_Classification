@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cba1b28d-d56c-4e97-b7d5-c509e0af846d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_FastText/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_FastText/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_RCNN/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_RCNN/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_TextCNN/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_TextCNN/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_TextRNN/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_TextRNN/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_args.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_args.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,38 +15,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="27" />
+            <state relative-caret-position="152">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Model_TextRNN/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="47" column="57" selection-start-line="47" selection-start-column="57" selection-end-line="47" selection-end-column="57" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/my_args.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="13" column="30" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="30" />
+            <state relative-caret-position="217">
+              <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -125,13 +99,13 @@
         <option value="$PROJECT_DIR$/Model_TextRNN/text_rnn.py" />
         <option value="$PROJECT_DIR$/data/du_query/stop_words.txt" />
         <option value="$PROJECT_DIR$/src/dataset.py" />
-        <option value="$PROJECT_DIR$/src/my_args.py" />
         <option value="$PROJECT_DIR$/Model_TextCNN/text_cnn.py" />
+        <option value="$PROJECT_DIR$/src/train.py" />
+        <option value="$PROJECT_DIR$/Model_TextRNN/main.py" />
         <option value="$PROJECT_DIR$/Model_TextCNN/main.py" />
         <option value="$PROJECT_DIR$/Model_RCNN/main.py" />
         <option value="$PROJECT_DIR$/Model_FastText/main.py" />
-        <option value="$PROJECT_DIR$/src/train.py" />
-        <option value="$PROJECT_DIR$/Model_TextRNN/main.py" />
+        <option value="$PROJECT_DIR$/src/my_args.py" />
       </list>
     </option>
   </component>
@@ -156,7 +130,17 @@
             <path>
               <item name="Chinese_Sentence_Classification" type="b2602c69:ProjectViewProjectNode" />
               <item name="Chinese_Sentence_Classification" type="462c0819:PsiDirectoryNode" />
+              <item name="Model_FastText" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Chinese_Sentence_Classification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chinese_Sentence_Classification" type="462c0819:PsiDirectoryNode" />
               <item name="Model_RCNN" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Chinese_Sentence_Classification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chinese_Sentence_Classification" type="462c0819:PsiDirectoryNode" />
+              <item name="Model_TextCNN" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Chinese_Sentence_Classification" type="b2602c69:ProjectViewProjectNode" />
@@ -332,16 +316,15 @@
       <updated>1557283838642</updated>
       <workItem from="1557283841856" duration="28998000" />
       <workItem from="1557621994496" duration="2618000" />
-      <workItem from="1558251853734" duration="13456000" />
+      <workItem from="1558251853734" duration="14362000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45072000" />
+    <option name="totallyTimeSpent" value="45978000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19742489" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -513,20 +496,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model_TextCNN/main.py">
+    <entry file="file://$PROJECT_DIR$/src/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
+        <state relative-caret-position="-138">
+          <caret line="47" column="49" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="49" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model_RCNN/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
+        <state relative-caret-position="338">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model_TextRNN/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="56" selection-start-line="56" selection-end-line="61" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model_TextCNN/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="51" column="4" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -535,39 +535,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Model_FastText/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
+        <state relative-caret-position="301">
+          <caret line="51" column="4" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="27" />
+        <state relative-caret-position="152">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my_args.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="13" column="30" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="47" column="57" selection-start-line="47" selection-start-column="57" selection-end-line="47" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Model_TextRNN/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="217">
+          <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
         </state>
       </provider>
     </entry>
