@@ -22,7 +22,7 @@ def build_args_parser():
     parser.add_argument('-filter-num', type=int, default=100, help='number of each size of filter')
     parser.add_argument('-filter-sizes', type=str, default='3,4,5',
                         help='comma-separated filter sizes to use for convolution')
-    parser.add_argument('-sen_len', type=int, default=32, help='max length of sentence')
+    parser.add_argument('-sen_len', type=int, default=50, help='max length of sentence')
 
     parser.add_argument('-static', type=bool, default=False, help='whether to use static pre-trained word vectors')
     parser.add_argument('-non-static', type=bool, default=False,
