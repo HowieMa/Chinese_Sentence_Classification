@@ -49,9 +49,14 @@ if args.cuda:
     torch.cuda.set_device(args.device)
     net = net.cuda()
 try:
-    net = train(train_iter, dev_iter, net, args)
+    train(train_iter, dev_iter, net, args)
 except KeyboardInterrupt:
     print('Exiting from training early')
 
-print('*'*20 + ' Testing ' + '*'*20)
-test_acc = test(dev_iter, net, args)
+
+print('*'*30 + ' Testing ' + '*'*30)
+save_prefix = os.path.join(args.save_dir, 'best')
+save_path = '{}_model.pth'.format(save_prefix)
+state_dict = torch.load(os.path.join(save_path, 'best_model.pth'))
+net.load_state_dict(state_dict)
+test_acc = test(test_iter, net, args)

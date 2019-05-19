@@ -45,12 +45,11 @@ def train(train_iter, dev_iter, model, args):
                     last_step = steps
                     if args.save_best:
                         print('Saving best model, acc: {:.4f}%\n'.format(best_acc))
-                        save(model, args.save_dir, 'best', steps)
+                        save(model, args.save_dir, 'best')
                 else:
                     if steps - last_step >= args.early_stopping:
                         print('\nearly stop by {} steps, acc: {:.4f}%'.format(args.early_stopping, best_acc))
                         raise KeyboardInterrupt
-    return model
 
 
 def evaluation(data_iter, model, args):
@@ -103,11 +102,11 @@ def test(data_iter, model, args):
     return accuracy
 
 
-def save(model, save_dir, save_prefix, steps):
+def save(model, save_dir, save_prefix):
     if not os.path.isdir(save_dir):
         os.makedirs(save_dir)
     save_prefix = os.path.join(save_dir, save_prefix)
-    save_path = '{}_steps_{}.pt'.format(save_prefix, steps)
+    save_path = '{}_model.pth'.format(save_prefix)
     torch.save(model.state_dict(), save_path)
 
 
