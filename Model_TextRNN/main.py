@@ -54,4 +54,4 @@ except KeyboardInterrupt:
     print('Exiting from training early')
 
 print('*'*20 + ' Testing ' + '*'*20)
-test_acc = evaluation(dev_iter, net, args)
+test_acc = test(dev_iter, net, args)

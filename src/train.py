@@ -1,5 +1,5 @@
 import os
-import sys
+import time
 import torch
 import torch.nn.functional as F
 
@@ -28,8 +28,7 @@ def train(train_iter, dev_iter, model, args):
             if steps % args.log_interval == 0:
                 corrects = (torch.max(logits, 1)[1].view(target.size()) == target).sum()
                 train_acc = 100.0 * corrects / batch.batch_size
-                sys.stdout.write(
-                    '\rIteration:[{}] - loss: {:.6f}  acc: {:.4f}%({}/{})\n'.format(steps,
+                print('Iteration:[{}] - loss: {:.6f}  acc: {:.4f}%({}/{})'.format(steps,
                                                                              loss.item(),
                                                                              train_acc,
                                                                              corrects,
@@ -71,6 +70,33 @@ def evaluation(data_iter, model, args):
     avg_loss /= size
     accuracy = (100.0 * corrects) / (size * 1.0)
     print('\nEvaluation - loss: {:.6f}  acc: {:.4f}%({}/{}) \n'.format(avg_loss,
+                                                                       accuracy,
+                                                                       corrects,
+                                                                       size))
+    return accuracy
+
+
+def test(data_iter, model, args):
+    model.eval()
+    corrects, avg_loss = 0, 0
+    time_start = time.time()
+    for batch in data_iter:
+        feature, target = batch.text, batch.label
+        feature.t_(), target.sub_(1)
+        if args.cuda:
+            feature, target = feature.cuda(), target.cuda()
+        logits = model(feature)
+        loss = F.cross_entropy(logits, target)
+        avg_loss += loss.item()
+        corrects += (torch.max(logits, 1)
+                     [1].view(target.size()) == target).sum()
+    time_end = time.time()
+    print('Test total cost {:.4f} s'.format(time_end - time_start))
+
+    size = len(data_iter.dataset)
+    avg_loss /= size
+    accuracy = (100.0 * corrects) / (size * 1.0)
+    print('\nTest - loss: {:.6f}  acc: {:.4f}%({}/{}) \n'.format(avg_loss,
                                                                        accuracy,
                                                                        corrects,
                                                                        size))
