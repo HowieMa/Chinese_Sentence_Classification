@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Model_FastText" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model_TextRNN" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model_RCNN" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Model_WordTextCNN" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (brain_tumor_segmentation)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
