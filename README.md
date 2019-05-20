@@ -28,7 +28,7 @@ Query, label
 
 ### TextRNN 
 <br>
-<img src="https://github.com/HowieMa/Chinese_Sentence_Classification/blob/master/src/img/BiLSTM.png" />
+<img src="https://github.com/HowieMa/Chinese_Sentence_Classification/blob/master/src/img/BiLSTM.jepg" />
 <br>
 
 ### RCNN 
