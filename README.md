@@ -28,7 +28,7 @@ Query, label
 
 ### TextRNN 
 <br>
-<img src="https://github.com/HowieMa/Chinese_Sentence_Classification/blob/master/src/img/BiLSTM.jepg" />
+<img src="https://github.com/HowieMa/Chinese_Sentence_Classification/blob/master/src/img/BiLSTM.jpeg" />
 <br>
 
 ### RCNN 
@@ -57,7 +57,7 @@ Use pre-trained Word Embedding  (multi-channel : free + not freeze)
 [Chinese-Word-Vectors](https://github.com/Embedding/Chinese-Word-Vectors)
 
 
-# Reference 
+## Reference 
 [Text-Classification-Models-Pytorch ](https://github.com/AnubhavGupta3377/Text-Classification-Models-Pytorch)  
 [chinese_text_cnn](https://github.com/bigboNed3/chinese_text_cnn)
 
