@@ -3,13 +3,13 @@ from torch import nn
 
 
 class FastText(nn.Module):
-    def __init__(self, args, hidden_size=10):
+    def __init__(self, args):
         super(FastText, self).__init__()
 
         class_num = args.class_num    # 3, 0 for unk, 1 for negative, 2 for postive
         vocabulary_size = args.vocabulary_size  # total number of vocab (2593)
         embedding_dimension = args.embedding_dim     # 128
-
+        hidden_size = args.hidden_size
         # Embedding Layer
         self.embedding = nn.Embedding(vocabulary_size, embedding_dimension)
 

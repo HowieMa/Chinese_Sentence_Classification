@@ -8,6 +8,11 @@
       <sourceFolder url="file://$MODULE_DIR$/Model_TextRNN" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model_RCNN" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model_WordTextCNN" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1_TextCNN" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2_WordTextCNN" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/3_FastText" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/4_TextRNN" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/5_RCNN" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (brain_tumor_segmentation)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

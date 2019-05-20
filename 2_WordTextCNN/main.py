@@ -12,14 +12,14 @@ from src.dataset import *
 
 
 args = build_args_parser()
-data_dir = '../data/cars_comment/'
+data_dir = args.dataset
 
 print('Loading data Iterator ...')
-text_field, label_field = create_field(data_dir)
+text_field, label_field = create_field(args)
 
 device = -1
 train_iter, dev_iter, test_iter = load_dataset(text_field, label_field,
-                                               data_dir, args, device=-1, repeat=False, shuffle=True)
+                                               args, device=-1, repeat=False, shuffle=True)
 
 
 args.vocabulary_size = len(text_field.vocab)

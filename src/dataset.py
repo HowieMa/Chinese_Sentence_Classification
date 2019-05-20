@@ -2,6 +2,14 @@ from torchtext.vocab import Vectors
 from torchtext import data
 import jieba
 
+import sys
+import os
+currentUrl = os.path.dirname(__file__)
+parentUrl = os.path.abspath(os.path.join(currentUrl, os.pardir))
+sys.path.append(parentUrl)
+
+from my_args import *
+
 
 def load_word_vectors(model_name, model_path):
     vectors = Vectors(name=model_name, cache=model_path)
@@ -13,7 +21,7 @@ def tokenizer_zh(x):
     "The quick fox jumped over a lazy dog."   -> (tokenization)
     ["The", "quick", "fox", "jumped", "over", "a", "lazy", "dog", "."]
     """
-    res = [w for w in jieba.cut(x)]
+    res = [w for w in jieba.cut(x, cut_all=False)]
     return res
 
 
@@ -25,15 +33,15 @@ def build_stop_words_set(set_dir):
     return stop_words
 
 
-def create_field(data_dir='../data/du_query/'):
-    stop_words = build_stop_words_set(data_dir + 'stop_words.txt')
-    text_field = data.Field(sequential=True, tokenize=tokenizer_zh, fix_length=50, stop_words=stop_words)
+def create_field(args):
+    stop_words = build_stop_words_set(args.dataset + 'stop_words.txt')
+    text_field = data.Field(sequential=True, tokenize=tokenizer_zh, fix_length=args.sen_len, stop_words=stop_words)
     label_field = data.Field(sequential=False)
     return text_field, label_field
 
 
-def get_dataset(text_field, label_field, data_dir='../data/du_query'):
-    train, valid, test = data.TabularDataset.splits(path=data_dir, format='tsv', skip_header=False,
+def get_dataset(text_field, label_field, args):
+    train, valid, test = data.TabularDataset.splits(path=args.dataset, format='tsv', skip_header=False,
                                                     train='train.tsv',
                                                     validation='valid.tsv',
                                                     test='test.tsv',
@@ -42,9 +50,9 @@ def get_dataset(text_field, label_field, data_dir='../data/du_query'):
     return train, valid, test
 
 
-def load_dataset(text_field, label_field, data_dir, args, **kwargs):
+def load_dataset(text_field, label_field, args, **kwargs):
     # ************************** get torch text dataset ***************************
-    train_dataset, dev_dataset, test_dataset = get_dataset(text_field, label_field, data_dir=data_dir)
+    train_dataset, dev_dataset, test_dataset = get_dataset(text_field, label_field, args)
 
     # ************************** build vocabulary *********************************
     if args.static and args.pretrained_name and args.pretrained_path:
@@ -70,12 +78,14 @@ def load_dataset(text_field, label_field, data_dir, args, **kwargs):
 
 if __name__ == "__main__":
 
-    Text_field, Label_field = create_field()
+    args = build_args_parser()
+
+    Text_field, Label_field = create_field(args)
     print(Text_field)               # torchtext.data.field.Field object
     print(Label_field)              # torchtext.data.field.Field object
 
     print('TEST Function: get_dataset ....')
-    Train_dataset, Dev_dataset, Test_dataset = get_dataset(Text_field, Label_field)
+    Train_dataset, Dev_dataset, Test_dataset = get_dataset(Text_field, Label_field, args)
 
     max_len = -1
     id = 0
@@ -91,13 +101,11 @@ if __name__ == "__main__":
     print(Train_dataset[id].text)    # ['你', '快', '休息', '我爱你', '小度']
     print(Train_dataset[id].label)   # 1
 
-    # args = build_args_parser()
-    # Train_iter, Dev_iter, Test_iter = load_dataset(Text_field, Label_field,  '../data', args,
-    #                                                device=-1, repeat=False, shuffle=True)
-    # # Test_iter
-    # batch = next(iter(Train_iter))
-    # print(batch.text.shape)
-    # print(batch.label)
-    # print(batch.label.shape)
-    #
+    Train_iter, Dev_iter, Test_iter = load_dataset(Text_field, Label_field, args,
+                                                   device=-1, repeat=False, shuffle=True)
+    # Test_iter
+    batch = next(iter(Train_iter))
+    print(batch.text.shape)
+    print(batch.label.shape)
+
     # vectors = load_word_vectors('sgns.zhihu.word', '../pretrained')
