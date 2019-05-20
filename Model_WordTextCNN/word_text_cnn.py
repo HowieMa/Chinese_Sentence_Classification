@@ -52,7 +52,7 @@ class WordTextCNN(nn.Module):
             x = self.embedding(x)       # Batch_size * Sentence_length(32) * embed_dim(128)
             x = x.permute(0, 2, 1)      # Batch_size * Embed_dim(128) * Sentence_length(32)
 
-        word_feature = self.word_fc(x.view(x.shape[0], -1))  # bz * filter_num
+        word_feature = self.word_fc(x.contiguous().view(x.shape[0], -1))  # bz * filter_num
 
         x = [conv(x).squeeze(2) for conv in self.convs]  # Batch_size * 100
         x = torch.cat(x, dim=1)  # Batch_size * 300(100+100+100)
