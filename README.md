@@ -1,26 +1,44 @@
 # Chinese_Sentence_Classification
 Implementation of TextCNN, TextRNN, RCNN, FastText with Pytorch  
+Pytorch 中文文本分类模型    
 
-
-# Prerequisites
+## Prerequisites
 Python >= 3.5  
 Pytorch >= 1.1.0  
-torchtext  >= 0.3.1 
+torchtext  >= 0.3.1   
+jieba >= 0.39  
 
-
-# Data organizer 
+## Data organizer 
 Train and test data are organized in the following style  
 
 `
 Query, label
 `
 
-e.g.  
-`
-你快休息吧我爱你小度,1 
-`
+## Models
+### TextCNN 
+<br>
+<img src="https://github.com/HowieMa/Chinese_Sentence_Classification/blob/master/src/img/TextCNN.png" />
+<br>
 
-# Train 
+### FastText
+<br>
+<img src="https://github.com/HowieMa/Chinese_Sentence_Classification/blob/master/src/img/fastText.png" />
+<br>
+
+### TextRNN 
+<br>
+<img src="https://github.com/HowieMa/Chinese_Sentence_Classification/blob/master/src/img/BiLSTM.png" />
+<br>
+
+### RCNN 
+<br>
+<img src="https://github.com/HowieMa/Chinese_Sentence_Classification/blob/master/src/img/RCNN.png" />
+<br>
+
+
+
+## Train 
 In each folder, you could train model in 4 ways:  
 
 Random Initialize Word Embedding   
@@ -35,11 +53,12 @@ Use pre-trained Word Embedding  (not freeze)
 Use pre-trained Word Embedding  (multi-channel : free + not freeze)   
 `python main.py -static=true -non-static=true -multichannel=true`
 
+### Word Embeddings 
+[Chinese-Word-Vectors](https://github.com/Embedding/Chinese-Word-Vectors)
 
 
 # Reference 
 [Text-Classification-Models-Pytorch ](https://github.com/AnubhavGupta3377/Text-Classification-Models-Pytorch)  
-
 [chinese_text_cnn](https://github.com/bigboNed3/chinese_text_cnn)
 
 
