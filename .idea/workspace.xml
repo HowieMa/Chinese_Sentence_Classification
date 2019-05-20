@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cba1b28d-d56c-4e97-b7d5-c509e0af846d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Model_FastText/fast_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_FastText/fast_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_FastText/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_FastText/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_RCNN/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_RCNN/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_RCNN/rcnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_RCNN/rcnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_TextCNN/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_TextCNN/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_TextRNN/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_TextRNN/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_TextRNN/text_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_TextRNN/text_rnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_WordTextCNN/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_WordTextCNN/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_WordTextCNN/word_text_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_WordTextCNN/word_text_cnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cars_comment/stop_words.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/cars_comment/stop_words.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/du_query/stop_words.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/du_query/stop_words.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_args.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_args.py" afterDir="false" />
-    </list>
+    <list default="true" id="cba1b28d-d56c-4e97-b7d5-c509e0af846d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +9,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/run.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -130,26 +125,6 @@
             <path>
               <item name="Chinese_Sentence_Classification" type="b2602c69:ProjectViewProjectNode" />
               <item name="Chinese_Sentence_Classification" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Chinese_Sentence_Classification" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Chinese_Sentence_Classification" type="462c0819:PsiDirectoryNode" />
-              <item name="Model_TextCNN" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Chinese_Sentence_Classification" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Chinese_Sentence_Classification" type="462c0819:PsiDirectoryNode" />
-              <item name="Model_TextRNN" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Chinese_Sentence_Classification" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Chinese_Sentence_Classification" type="462c0819:PsiDirectoryNode" />
-              <item name="Model_WordTextCNN" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Chinese_Sentence_Classification" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Chinese_Sentence_Classification" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -315,15 +290,16 @@
       <updated>1557283838642</updated>
       <workItem from="1557283841856" duration="28998000" />
       <workItem from="1557621994496" duration="2618000" />
-      <workItem from="1558251853734" duration="21649000" />
+      <workItem from="1558251853734" duration="21829000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53265000" />
+    <option name="totallyTimeSpent" value="53445000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19742489" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

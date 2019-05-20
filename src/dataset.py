@@ -2,13 +2,12 @@ from torchtext.vocab import Vectors
 from torchtext import data
 import jieba
 
-import sys
-import os
-currentUrl = os.path.dirname(__file__)
-parentUrl = os.path.abspath(os.path.join(currentUrl, os.pardir))
-sys.path.append(parentUrl)
-
-from my_args import *
+# import sys
+# import os
+# currentUrl = os.path.dirname(__file__)
+# parentUrl = os.path.abspath(os.path.join(currentUrl, os.pardir))
+# sys.path.append(parentUrl)
+# from my_args import *
 
 
 def load_word_vectors(model_name, model_path):
@@ -76,36 +75,36 @@ def load_dataset(text_field, label_field, args, **kwargs):
     return train_iter, dev_iter, test_iter
 
 
-if __name__ == "__main__":
-
-    args = build_args_parser()
-
-    Text_field, Label_field = create_field(args)
-    print(Text_field)               # torchtext.data.field.Field object
-    print(Label_field)              # torchtext.data.field.Field object
-
-    print('TEST Function: get_dataset ....')
-    Train_dataset, Dev_dataset, Test_dataset = get_dataset(Text_field, Label_field, args)
-
-    max_len = -1
-    id = 0
-
-    for i in range(len(Train_dataset)):
-        if len(Train_dataset[i].text) > max_len:
-            max_len = len(Train_dataset[i].text)
-            id = i
-
-    print(id)
-    print('max length %d' % max_len)
-
-    print(Train_dataset[id].text)    # ['你', '快', '休息', '我爱你', '小度']
-    print(Train_dataset[id].label)   # 1
-
-    Train_iter, Dev_iter, Test_iter = load_dataset(Text_field, Label_field, args,
-                                                   device=-1, repeat=False, shuffle=True)
-    # Test_iter
-    batch = next(iter(Train_iter))
-    print(batch.text.shape)
-    print(batch.label.shape)
-
-    # vectors = load_word_vectors('sgns.zhihu.word', '../pretrained')
+# if __name__ == "__main__":
+#
+#     args = build_args_parser()
+#
+#     Text_field, Label_field = create_field(args)
+#     print(Text_field)               # torchtext.data.field.Field object
+#     print(Label_field)              # torchtext.data.field.Field object
+#
+#     print('TEST Function: get_dataset ....')
+#     Train_dataset, Dev_dataset, Test_dataset = get_dataset(Text_field, Label_field, args)
+#
+#     max_len = -1
+#     id = 0
+#
+#     for i in range(len(Train_dataset)):
+#         if len(Train_dataset[i].text) > max_len:
+#             max_len = len(Train_dataset[i].text)
+#             id = i
+#
+#     print(id)
+#     print('max length %d' % max_len)
+#
+#     print(Train_dataset[id].text)    # ['你', '快', '休息', '我爱你', '小度']
+#     print(Train_dataset[id].label)   # 1
+#
+#     Train_iter, Dev_iter, Test_iter = load_dataset(Text_field, Label_field, args,
+#                                                    device=-1, repeat=False, shuffle=True)
+#     # Test_iter
+#     batch = next(iter(Train_iter))
+#     print(batch.text.shape)
+#     print(batch.label.shape)
+#
+#     # vectors = load_word_vectors('sgns.zhihu.word', '../pretrained')
